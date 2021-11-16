@@ -14,8 +14,8 @@ export default function NavbarComponent(){
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                 >
-                    <Nav.Link href="#biciclete">Biciclete</Nav.Link>
-                    <Nav.Link href="#trotinete">Trotinete electrice</Nav.Link>
+                    <Nav.Link href="#products">Produse</Nav.Link>
+                    <Nav.Link href="#prices">Prețuri</Nav.Link>
                     <Nav.Link href="#contact">Contact</Nav.Link>
                 </Nav>
                 <Button className="me-2" variant="outline-warning">Închiriază acum</Button>
