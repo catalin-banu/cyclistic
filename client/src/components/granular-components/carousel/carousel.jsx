@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import CityBikeImage from "../../../resources/city-bike-wallpaper.jpg";
 import MTBImage from "../../../resources/mountain-bike-wallpaper.jpg";
-import ScouterImage from "../../../resources/electric-scooter.jpg";
+import ScouterImage from "../../../resources/electric-scooter-wallpaper.jpg";
 
 import './carousel.css'
 
@@ -24,7 +24,7 @@ export default function CarouselComponent(){
                     src={MTBImage}
                     alt="Mountain bike slide"/>
                 <Carousel.Caption className="carousel-caption-mountain">
-                    <p className="mountain-bike-text">Sau de o aventură <br/>extraordinară pe potecile munților?</p>
+                    <p className="mountain-bike-text">Sau de o aventură extraordinară pe <br/> potecile munților?</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item className="carousel-item" interval={3000}>
