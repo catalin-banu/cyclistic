@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Container, Nav, Navbar, Button} from "react-bootstrap";
-
+import OrderComponent from "../order-modal-component/order-component";
+import LoginModal from "../login-admin-component";
 
 export default function NavbarComponent(){
+    const [orderModalShow, setOrderModalShow] = useState(false);
+    const [loginModalShow, setLoginModalShow] = useState(false);
+
     return(
+        <>
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
                 <Navbar.Brand href="/">Nume aplicație</Navbar.Brand>
@@ -18,10 +23,13 @@ export default function NavbarComponent(){
                     <Nav.Link href="#prices">Prețuri</Nav.Link>
                     <Nav.Link href="#contact">Contact</Nav.Link>
                 </Nav>
-                <Button className="me-2" variant="outline-warning">Închiriază acum</Button>
-                <Button variant="outline-success">Admin</Button>
+                <Button className="me-2" variant="outline-warning" onClick={() => setOrderModalShow(true)}>Închiriază acum</Button>
+                <Button variant="outline-success" onClick={() => setLoginModalShow(true)}>Admin</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+        <OrderComponent show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
+        <LoginModal show={loginModalShow} onHide={() => setLoginModalShow(false)}/>
+        </>
     )
 }
