@@ -47,7 +47,7 @@ function ViewOrdersComponent(){
 
     let ordersList = orders.map(
         (order) =>
-        <tr>
+        <tr onClick={() => alert("Comanda " + order.orderNO)}>
             <td>{orders.indexOf(order) + 1}</td>
             <td>{order.orderNO}</td>
             <td>{order.lastName}</td>
