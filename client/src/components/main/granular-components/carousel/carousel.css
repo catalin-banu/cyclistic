@@ -1,0 +1,48 @@
+.carousel-container {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-container > div:nth-child(2) {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption-city {
+  right: 10% !important;
+}
+
+.city-bike-text {
+  font-size: 3rem;
+  color: rgb(192, 189, 189);
+  font-weight: 400;
+  text-align: right;
+}
+
+.carousel-caption-mountain {
+  top: 3% !important;
+  left: 7% !important;
+}
+
+.mountain-bike-text {
+  font-size: 3rem;
+  color: rgb(192, 189, 189);
+  font-weight: 400;
+  text-align: left;
+}
+
+.carousel-caption-scooter {
+  bottom: 4% !important;
+  left: 7% !important;
+}

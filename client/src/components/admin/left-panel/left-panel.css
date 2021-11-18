@@ -1,0 +1,79 @@
+#left-panel {
+  height: 100vh;
+  width: 20%;
+  min-width: 180px;
+  max-width: 220px;
+  background-color: #1d2835;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.panel-title {
+  font-size: 28px;
+  color: white;
+  font-weight: 700;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.admin-icon {
+  height: 40vw;
+  width: 40vw;
+  max-width: 120px;
+  min-width: 110px;
+  max-height: 120px;
+  min-height: 110px;
+  object-fit: cover !important;
+}
+
+.role {
+  color: white;
+  font-size: 20px;
+}
+
+.logout {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #1d2835;
+  border-color: #1d2835;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+}
+
+.logout-text {
+  font-size: large;
+  margin-left: 5%;
+}
+
+.logout-icon {
+  height: 100%;
+  width: 100%;
+  max-width: 30px;
+  min-width: 20px;
+  max-height: 30px;
+  min-height: 20px;
+}
+
+.logout:hover {
+  border-color: white;
+}
+
+@media screen and (max-width: 800px) {
+  #left-panel {
+    width: 100%;
+    max-width: 100%;
+    height: 4vh;
+  }
+
+  .panel-title, .admin-icon, .role {
+    display: none;
+  }
+
+  .logout-icon {
+    width: 5%;
+  }
+}

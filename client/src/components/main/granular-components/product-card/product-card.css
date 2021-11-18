@@ -1,0 +1,14 @@
+.card{
+    width: 18rem;
+    border-radius: 0.7rem !important;
+}
+
+.card-image{
+    border-radius: 0.7rem !important;
+    display: block;
+    max-width:286px;
+    max-height:190px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
