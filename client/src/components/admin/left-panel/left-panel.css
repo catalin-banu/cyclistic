@@ -69,15 +69,7 @@
     height: 4vh;
   }
 
-  .title {
-    display: none;
-  }
-
-  .admin-icon {
-    display: none;
-  }
-
-  .role {
+  .panel-title, .admin-icon, .role {
     display: none;
   }
 
