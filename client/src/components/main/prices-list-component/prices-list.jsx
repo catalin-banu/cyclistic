@@ -56,6 +56,7 @@ function PricesListComponent(){
                     </tr>
                 </tbody>
             </Table>
+            <p>*Pentru închirierea mai multor biciclete se oferă reducere!</p> 
         </div>
     </div>
     )

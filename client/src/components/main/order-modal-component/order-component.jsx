@@ -1,5 +1,6 @@
 import React from "react";
 import {Modal, Button, Form, Row, Col} from 'react-bootstrap';
+import './order-component.css'
 
 export default function OrderComponent(props){
     return(
@@ -28,7 +29,7 @@ export default function OrderComponent(props){
                             <Form.Control type="number"/>
                     </Form.Group>
                     <Form.Label>Produsul dorit</Form.Label>
-                    <Form.Group as={Col} className="mb-1">
+                    <Form.Group as={Col} className="choose-product">
                         <Form.Check label="Bicicletă de oraș" name="group1" type="checkbox"/>
                         <Form.Check label="Bicicletă de munte" name="group1" type="checkbox"/>
                         <Form.Check label="Bicicletă electrică" name="group1" type="checkbox"/>

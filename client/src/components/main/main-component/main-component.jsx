@@ -1,20 +1,20 @@
 import React from "react";
-import './welcome-component.css';
+import './main-component.css';
 import NavbarComponent from "../granular-components/navbar";
 import CarouselComponent from "../granular-components/carousel/carousel";
-import ProductsPresentationComponent from "../products-presentation-compononent/products-presentation";
+import ProductsListComponent from "../products-list-component/products-list";
 import PricesListComponent from "../prices-list-component/prices-list";
 import ContactComponent from "../contact-component/contact-component";
 
-function WelcomeComponent(){
+function MainComponent(){
     return(
         <div className="welcome-page-container">
             <NavbarComponent />
             <div className="rest-of-the-page">
                 <CarouselComponent/>
-                <ProductsPresentationComponent />
-                <PricesListComponent />
-                <ContactComponent />
+                <ProductsListComponent/>
+                <PricesListComponent/>
+                <ContactComponent/>
                 <div className="rights">
                     <span>©2021 închiriază@office.com. All Rights Reserved</span>
                 </div>
@@ -23,4 +23,4 @@ function WelcomeComponent(){
     )
 }
 
-export default WelcomeComponent
+export default MainComponent

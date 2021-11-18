@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Container, Nav, Navbar, Button} from "react-bootstrap";
 import OrderComponent from "../order-modal-component/order-component";
-import LoginModal from "../login-admin-component";
+import LoginModal from "./login-admin-component";
 
 export default function NavbarComponent(){
     const [orderModalShow, setOrderModalShow] = useState(false);

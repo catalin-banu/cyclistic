@@ -1,0 +1,20 @@
+#prices {
+  width: 100%;
+  display: flex;
+  background-image: url("../../../resources/bg-prices.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.prices-wrapper {
+  width: 90%;
+  margin: auto;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  align-self: center;
+}
+
+.title {
+  margin-bottom: 2%;
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import CityBikeImage from "../../../resources/city-bike-wallpaper.jpg";
-import MTBImage from "../../../resources/mountain-bike-wallpaper.jpg";
-import ScouterImage from "../../../resources/electric-scooter-wallpaper.jpg";
+import CityBikeImage from "../../../../resources/city-bike-wallpaper.jpg";
+import MTBImage from "../../../../resources/mountain-bike-wallpaper.jpg";
+import ScouterImage from "../../../../resources/electric-scooter-wallpaper.jpg";
 
 import './carousel.css'
 
