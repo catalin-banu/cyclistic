@@ -13,7 +13,7 @@ function LeftPanelComponent(){
     }
     return(
         <div id="left-panel">
-            <span className="title">Nume aplicație</span>
+            <span className="panel-title">Nume aplicație</span>
             <img src={AdminIcon} alt="Admin Icon" className="admin-icon"/>
             <button  className="logout" onClick={handleLogout}>
                 <img src={LogoutIcon} alt="Logout Icon" className="logout-icon"/>
