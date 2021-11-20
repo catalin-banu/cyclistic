@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
         existingOrder.setLastName(orderUpdate.getLastName());
         existingOrder.setEmail(orderUpdate.getEmail());
         existingOrder.setPhone(orderUpdate.getPhone());
-        existingOrder.setProduct(orderUpdate.getProduct());
+        existingOrder.setProductList(orderUpdate.getProductList());
         existingOrder.setRentalTime(orderUpdate.getRentalTime());
         existingOrder.setStatus(orderUpdate.getStatus());
         orderRepository.save(existingOrder);
