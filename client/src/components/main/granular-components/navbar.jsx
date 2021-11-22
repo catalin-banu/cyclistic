@@ -11,7 +11,7 @@ export default function NavbarComponent(){
         <>
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="/">Nume aplicație</Navbar.Brand>
+                <Navbar.Brand href="/">CYCLISTIC</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav
