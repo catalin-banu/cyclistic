@@ -1,69 +1,57 @@
-import React from "react";
-import Table from 'react-bootstrap/Table';
-
-const orders = [
-    {
-        lastName:"Popescu",
-        firstName: "Ion",
-        orderNO: "0001",
-        email:"popescuion@mail.com",
-        phone:"0756378928",
-        product: "Bicicleta de oras",
-        rentalTime:{
-            hours: 1,
-            days: 0,
-        },
-        status: "in asteptare"
-    },
-    {
-        lastName:"Ionescu",
-        firstName: "Vasile",
-        orderNO: "0002",
-        email:"vasi_pup@gmail.com",
-        phone:"0754578928",
-        product: "Bicicleta de munte",
-        rentalTime:{
-            hours: 0,
-            days: 1,
-        },
-        status: "in asteptare"
-    },
-    {
-        lastName:"Georgescu",
-        firstName: "Cristi",
-        orderNO: "0003",
-        email:"cristi_g@yahoo.com",
-        phone:"0754578928",
-        product: "Bicicleta electrica",
-        rentalTime:{
-            hours: 6,
-            days: 0,
-        },
-        status: "in asteptare"
-    }
-]
+import React, { useEffect, useState } from "react";
+import {Table, Form, FormControl, Alert} from 'react-bootstrap';
+import axios from "axios";
 
 function ViewOrdersComponent(){
+    const[ordersToShow, setOrdersToShow] = useState([]);
+    const[errorMessage, setErrorMessage] = useState(false);
 
-    let ordersList = orders.map(
+    let ordersList = ordersToShow.map(
         (order) =>
-        <tr onClick={() => alert("Comanda " + order.orderNO)} style={{cursor:"pointer"}}>
-            <td>{orders.indexOf(order) + 1}</td>
-            <td>{order.orderNO}</td>
+        <tr style={{cursor:"pointer"}} key={order.id}>
+            <td>{order.id}</td>
             <td>{order.lastName}</td>
             <td>{order.firstName}</td>
             <td>{order.email}</td>
             <td>{order.phone}</td>
-            <td>{order.product}</td>
-            <td>{order.rentalTime.hours + " h " + order.rentalTime.days +" zile"}</td>
-            <td>{order.status}</td>
+            <td><p>{order.productList}</p></td>
+            <td>{order.rentalTime}</td>
+            <td>{order.status}</td> 
         </tr>
     )
+    function onSearch(event){
+        const orders = ordersToShow.filter((order) => {
+            return order.id.toString().includes(event.target.value);
+        });
+        setOrdersToShow(orders);
+    }
+
+    useEffect(() =>{
+        const interval = setInterval(() => {
+            axios
+            .get("http://localhost:8080/v1/api/orders")
+            .then(function(response){
+                setOrdersToShow(response.data);
+                console.log(response.data);
+                setErrorMessage(false)})
+            .catch(function(error){
+                setErrorMessage(true);
+                if(error.response) {
+                    console.log(error.response.data);
+                }
+            });
+        }, 2000);
+        return () => clearInterval(interval);
+    },[])
     return(
+        <>
+        {errorMessage && <Alert variant="danger">Serverul nu răspunde. Contactați departamentul IT!</Alert>}
+        <Form className="d-flex">
+        <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search" onChange={onSearch}/>
+      </Form>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Nr. Comenzii</th>
                     <th>Nume</th>
                     <th>Prenume</th>
@@ -78,6 +66,7 @@ function ViewOrdersComponent(){
                {ordersList}
             </tbody>
         </Table>
+        </>
     )
 }
 
