@@ -59,7 +59,6 @@ export default function OrderComponent(props){
                     console.log(error.response.status);
                     console.log(error.response.headers);
                 }});
-        
     }
 
     return(
@@ -68,28 +67,27 @@ export default function OrderComponent(props){
                 <Modal.Title>Formular de închiriere</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {succesMessage && 
-                <Alert variant="success">
+                {succesMessage && <Alert variant="success">
                     Comanda dvs cu numărul {orderNumber} a fost înregistrată cu succes!
                 </Alert>}
                 <Form id="order-form" onSubmit={handleSubmit}>
                     <Row className="mb-1">
                         <Form.Group as={Col} controlId="formGridLastName">
                             <Form.Label>Nume</Form.Label>
-                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridFirstName">
                             <Form.Label>Prenume</Form.Label>
-                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                         </Form.Group>
                     </Row>
                     <Form.Group as={Col} className="mb-1" controlId="formGridEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     </Form.Group>
                     <Form.Group as={Col} className="mb-1" controlId="formGridPhone">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                            <Form.Control type="number" value={phone} onChange={(e) => setPhone(e.target.value)} required/>
                     </Form.Group>
                     <Form.Label>Produsul dorit</Form.Label>
                     <Form.Group as={Col} className="choose-product">
@@ -113,10 +111,10 @@ export default function OrderComponent(props){
                     <Form.Label>Timpul de închiriere</Form.Label>
                     <Row className="mb-1">
                         <Form.Group as={Col} controlId="formGridRentalTime">
-                            <Form.Control type="number" placeholder="Ore" min="0" max="8" value={rentalTimeHours} onChange={(e) => setRentalTimeHours(e.target.value)}/>
+                            <Form.Control type="number" placeholder="Ore" min="0" max="8" value={rentalTimeHours} onChange={(e) => setRentalTimeHours(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridConfirmPassword">
-                            <Form.Control type="number" placeholder="Zile" min="0" max="4" value={rentalTimeDays} onChange={(e) => setRentalTimeDays(e.target.value)}/>
+                            <Form.Control type="number" placeholder="Zile" min="0" max="4" value={rentalTimeDays} onChange={(e) => setRentalTimeDays(e.target.value)} required/>
                         </Form.Group>
                     </Row>
                 </Form>
