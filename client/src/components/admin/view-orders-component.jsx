@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {Table, Form, FormControl, Alert} from 'react-bootstrap';
 import axios from "axios";
+import ViewOrder from "./view-order-modal/view-order-modal";
 
 function ViewOrdersComponent(){
     const[ordersToShow, setOrdersToShow] = useState([]);
+    const[ordersListBackup, setOrdersListBackup] = useState([]);
     const[errorMessage, setErrorMessage] = useState(false);
+    const[orderView, setOrderView] = useState('');
+    const[orderModalShow, setOrderModalShow] = useState(false);
 
-    let ordersList = ordersToShow.map(
-        (order) =>
-        <tr style={{cursor:"pointer"}} key={order.id}>
+    let ordersList = ordersToShow.map((order) =>
+        <tr key={order.id} onClick={() =>{ setOrderView(order); setOrderModalShow(true)}} style={{cursor:"pointer"}}>
             <td>{order.id}</td>
             <td>{order.lastName}</td>
             <td>{order.firstName}</td>
@@ -19,36 +22,37 @@ function ViewOrdersComponent(){
             <td>{order.status}</td> 
         </tr>
     )
+
     function onSearch(event){
-        const orders = ordersToShow.filter((order) => {
-            return order.id.toString().includes(event.target.value);
-        });
-        setOrdersToShow(orders);
+        if(event.target.value !== ""){
+            const orders = ordersToShow.filter((order) => {
+                return order.id.toString().includes(event.target.value);
+            });
+            setOrdersToShow(orders);
+        } else setOrdersToShow(ordersListBackup);
     }
 
-    useEffect(() =>{
-        const interval = setInterval(() => {
-            axios
-            .get("http://localhost:8080/v1/api/orders")
-            .then(function(response){
-                setOrdersToShow(response.data);
-                console.log(response.data);
-                setErrorMessage(false)})
-            .catch(function(error){
+    useEffect(() => {
+        const recevingData = async() => {
+            try{
+                const response = await axios.get("http://localhost:8080/v1/api/orders");
+                const responseData = await response.data;
+                setOrdersToShow(responseData);
+                setOrdersListBackup(responseData);
+            } catch(error){
                 setErrorMessage(true);
-                if(error.response) {
-                    console.log(error.response.data);
-                }
-            });
-        }, 2000);
-        return () => clearInterval(interval);
-    },[])
+                console.log(error.response.data);
+            }
+        }
+        recevingData();
+    },[]);
+
     return(
         <>
-        {errorMessage && <Alert variant="danger">Serverul nu răspunde. Contactați departamentul IT!</Alert>}
+        {errorMessage && <Alert variant="danger">A apărut o eroare în comunicarea cu serverul. Contactați departamentul IT!</Alert>}
         <Form className="d-flex">
-        <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search" onChange={onSearch}/>
-      </Form>
+            <FormControl type="search" placeholder="Caută după numărul comenzii" className="mb-2" aria-label="Search" onChange={onSearch}/>
+        </Form>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
@@ -66,6 +70,7 @@ function ViewOrdersComponent(){
                {ordersList}
             </tbody>
         </Table>
+        <ViewOrder order={orderView} show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
         </>
     )
 }
