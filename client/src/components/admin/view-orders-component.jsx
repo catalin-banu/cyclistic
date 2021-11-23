@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {Table, Form, FormControl, Alert} from 'react-bootstrap';
 import axios from "axios";
-import ViewOrder from "./view-order-modal/view-order-modal";
+import ViewOrderDetails from "./view-order-details/view-order-details";
 
 function ViewOrdersComponent(){
     const[ordersToShow, setOrdersToShow] = useState([]);
@@ -11,7 +11,7 @@ function ViewOrdersComponent(){
     const[orderModalShow, setOrderModalShow] = useState(false);
 
     let ordersList = ordersToShow.map((order) =>
-        <tr key={order.id} onClick={() =>{ setOrderView(order); setOrderModalShow(true)}} style={{cursor:"pointer"}}>
+        <tr key={order.id} onClick={() =>{ setOrderView(order); setOrderModalShow(true)}}>
             <td>{order.id}</td>
             <td>{order.lastName}</td>
             <td>{order.firstName}</td>
@@ -70,7 +70,7 @@ function ViewOrdersComponent(){
                {ordersList}
             </tbody>
         </Table>
-        <ViewOrder order={orderView} show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
+        <ViewOrderDetails order={orderView} show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
         </>
     )
 }
