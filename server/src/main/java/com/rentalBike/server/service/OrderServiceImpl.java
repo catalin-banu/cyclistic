@@ -5,10 +5,8 @@ import com.rentalBike.server.model.OrderItem;
 import com.rentalBike.server.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -41,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
         existingOrder.setPhone(orderUpdate.getPhone());
         existingOrder.setProductList(orderUpdate.getProductList());
         existingOrder.setRentalTime(orderUpdate.getRentalTime());
+        existingOrder.setDetails(orderUpdate.getDetails());
         existingOrder.setStatus(orderUpdate.getStatus());
         orderRepository.save(existingOrder);
         return existingOrder;

@@ -22,5 +22,6 @@ public class OrderItem {
     private String phone;
     private String productList;
     private String rentalTime;
+    private String details;
     private String status;
 }
