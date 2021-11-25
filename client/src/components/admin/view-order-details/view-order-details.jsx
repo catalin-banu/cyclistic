@@ -11,6 +11,7 @@ export default function ViewOrderDetails(props){
     const[phone, setPhone] = useState('');
     const[productList, setProductList] = useState('');
     const[rentalTime, setRentalTime] = useState('');
+    const[details, setDetails] = useState('');
     const[status, setStatus] = useState('');
     const[succesMessage, setSuccesMessage] = useState(false);
 
@@ -23,6 +24,7 @@ export default function ViewOrderDetails(props){
             phone: phone.toString(),
             productList: productList,
             rentalTime: rentalTime,
+            details: details,
             status: status
         }
         
@@ -32,7 +34,7 @@ export default function ViewOrderDetails(props){
                     setSuccesMessage(true);
                     console.log(response.data);
             })
-            .catch(function (error) {
+            .catch((error) => {
                 setSuccesMessage(false);
                 if (error.response) {
                     console.log(error.response.data);
@@ -48,9 +50,10 @@ export default function ViewOrderDetails(props){
         setPhone(props.order.phone);
         setProductList(props.order.productList);
         setRentalTime(props.order.rentalTime);
+        setDetails(props.order.details);
         setStatus(props.order.status);
         setSuccesMessage(false);
-    },[props.order.firstName, props.order.lastName, props.order.email, props.order.phone, props.order.productList, props.order.rentalTime, props.order.status]);
+    },[props.order]);
 
     return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered size='lg'>
@@ -99,7 +102,7 @@ export default function ViewOrderDetails(props){
                 </Row>
                 <Form.Group className="mb-1" controlId="updateComments">
                     <Form.Label>Detalii</Form.Label>
-                    <Form.Control as="textarea" rows={3}/>
+                    <Form.Control as="textarea" rows={3} value={details} onChange={(e) => setDetails(e.target.value)}/>
                 </Form.Group>
             </Form>
         </Modal.Body>

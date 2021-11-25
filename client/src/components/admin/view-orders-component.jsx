@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {Table, Form, FormControl, Alert} from 'react-bootstrap';
+import {Table, Alert} from 'react-bootstrap';
 import axios from "axios";
 import ViewOrderDetails from "./view-order-details/view-order-details";
 
 function ViewOrdersComponent(){
     const[ordersToShow, setOrdersToShow] = useState([]);
-    const[ordersListBackup, setOrdersListBackup] = useState([]);
     const[errorMessage, setErrorMessage] = useState(false);
     const[orderView, setOrderView] = useState('');
     const[orderModalShow, setOrderModalShow] = useState(false);
@@ -19,18 +18,10 @@ function ViewOrdersComponent(){
             <td>{order.phone}</td>
             <td><p>{order.productList}</p></td>
             <td>{order.rentalTime}</td>
+            <td>{order.details}</td>
             <td>{order.status}</td> 
         </tr>
     )
-
-    function onSearch(event){
-        if(event.target.value !== ""){
-            const orders = ordersToShow.filter((order) => {
-                return order.id.toString().includes(event.target.value);
-            });
-            setOrdersToShow(orders);
-        } else setOrdersToShow(ordersListBackup);
-    }
 
     useEffect(() => {
         const recevingData = async() => {
@@ -38,21 +29,17 @@ function ViewOrdersComponent(){
                 const response = await axios.get("http://localhost:8080/v1/api/orders");
                 const responseData = await response.data;
                 setOrdersToShow(responseData);
-                setOrdersListBackup(responseData);
-            } catch(error){
+            }catch(error){
                 setErrorMessage(true);
-                console.log(error.response.data);
+                console.log(error.response);
             }
         }
         recevingData();
-    },[]);
+    },[ordersToShow]);
 
     return(
         <>
         {errorMessage && <Alert variant="danger">A apărut o eroare în comunicarea cu serverul. Contactați departamentul IT!</Alert>}
-        <Form className="d-flex">
-            <FormControl type="search" placeholder="Caută după numărul comenzii" className="mb-2" aria-label="Search" onChange={onSearch}/>
-        </Form>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
@@ -62,7 +49,8 @@ function ViewOrdersComponent(){
                     <th>Email</th>
                     <th>Telefon</th>
                     <th>Produs</th>
-                    <th>Interval inchiriere</th>
+                    <th>Interval închiriere</th>
+                    <th>Detalii</th>
                     <th>Status</th>
                 </tr>
             </thead>
