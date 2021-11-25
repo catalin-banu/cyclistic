@@ -1,0 +1,19 @@
+.choose-product {
+  margin-left: 5%;
+  margin-bottom: 1%;
+}
+
+.form-check-group{
+  display: flex;
+  flex-direction: row;
+}
+
+.form-check-group>div{
+  width: 35%;
+}
+
+.number-of-product{
+  width: 20%;
+  margin-left: 15%;
+  margin-bottom: 1%;
+}

@@ -8,7 +8,7 @@ function ContactComponent(){
                 <h3>Contact</h3>
                 <p>
                     Adresă: Strada Republicii, Nr. 5, Brașov <br/>
-                    Email: închiriază@office.com <br/>
+                    Email: office@cyclistic.com <br/>
                     Telefon: 0741234567 <br/>
                     Program de lucru: Luni - Duminică <br/>
                     Interval orar: 08:00 - 20:00 

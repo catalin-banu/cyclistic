@@ -1,6 +1,8 @@
 package com.rentalBike.server.payroll;
 
+import com.rentalBike.server.model.AdminItem;
 import com.rentalBike.server.model.OrderItem;
+import com.rentalBike.server.repository.AdminRepository;
 import com.rentalBike.server.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,20 +16,22 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(OrderRepository orderRepository){
+    CommandLineRunner initDatabase(OrderRepository orderRepository, AdminRepository adminRepository){
         return args -> {
             log.info("Preloading " + orderRepository
                     .save(new OrderItem(1L,"George","Popescu","popescugeorgel@gmail.com",
-                            "0713567383","Bicicletă de munte","4h 0 zile","În așteptare")));
+                            "0713567383","Bicicletă de munte(2)","4h 0 zile","","ÎN AȘTEPTARE")));
             log.info("Preloading " + orderRepository
                     .save(new OrderItem(2L,"Ion","Radu","radu_ion@yahoo.com",
-                            "0746987542","Bicicletă de oras","0h 1 zile","În așteptare")));
+                            "0746987542","Bicicletă de oras(4)","0h 1 zile","","ÎN AȘTEPTARE")));
             log.info("Preloading " + orderRepository
                     .save(new OrderItem(3L,"Adina","Duicu","adyna99@yahoo.com",
-                            "0746978942","Bicicletă electrică","0h 2 zile","În așteptare")));
+                            "0746978942","Bicicletă electrică(1)","0h 2 zile","","ÎN AȘTEPTARE")));
             log.info("Preloading " + orderRepository
                     .save(new OrderItem(4L,"Georgiana","Cristea","geo_cristea@gmail.com",
-                            "0729847432","Trotinetă electrică","8h 0 zile","În așteptare")));
+                            "0729847432","Trotinetă electrică(1)","8h 0 zile","","ÎN AȘTEPTARE")));
+            log.info("Preloading admin" + adminRepository
+                    .save(new AdminItem("admin","parola1234")));
         };
     }
 }

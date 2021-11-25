@@ -20,7 +20,8 @@ public class OrderItem {
     private String lastName;
     private String email;
     private String phone;
-    private String product;
+    private String productList;
     private String rentalTime;
+    private String details;
     private String status;
 }
