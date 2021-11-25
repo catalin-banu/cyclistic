@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import {Table, Alert} from 'react-bootstrap';
 import axios from "axios";
-import ViewOrderDetails from "./view-order-details/view-order-details";
+import ViewOrderDetails from "./view-order-details";
 
-function ViewOrdersComponent(){
+function OrdersTable(){
     const[ordersToShow, setOrdersToShow] = useState([]);
     const[errorMessage, setErrorMessage] = useState(false);
     const[orderView, setOrderView] = useState('');
@@ -63,4 +63,4 @@ function ViewOrdersComponent(){
     )
 }
 
-export default ViewOrdersComponent;
+export default OrdersTable;

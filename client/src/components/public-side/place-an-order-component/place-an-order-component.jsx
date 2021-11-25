@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import {Modal, Button, Form, Row, Col, Alert} from 'react-bootstrap';
-import './order-component.css'
+import './place-an-order-component.css'
 import OrderStatus from "../../../util/OrderStatus";
 import convertMapToString from "../../../util/convertMapToString";
 
-export default function OrderComponent(props){
+export default function PlaceAnOrderComponent(props){
 
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
@@ -48,17 +48,13 @@ export default function OrderComponent(props){
         }
         await axios
             .post("http://localhost:8080/v1/api/order", orderItem)
-            .then(function(response){
+            .then((response) => {
                     setOrderNumber(response.data.id);
                     setSuccesMessage(true);
-                    console.log(response.data);
             })
-            .catch(function (error) {
-                if (error.response) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                }});
+            .catch((error) => {
+                if (error.response) console.log(error.response.data);
+            });
     }
 
     return(
@@ -72,20 +68,20 @@ export default function OrderComponent(props){
                 </Alert>}
                 <Form id="order-form" onSubmit={handleSubmit}>
                     <Row className="mb-1">
-                        <Form.Group as={Col} controlId="formGridLastName">
+                        <Form.Group as={Col} controlId="orderLastName">
                             <Form.Label>Nume</Form.Label>
                             <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridFirstName">
+                        <Form.Group as={Col} controlId="orderFirstName">
                             <Form.Label>Prenume</Form.Label>
                             <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
                         </Form.Group>
                     </Row>
-                    <Form.Group as={Col} className="mb-1" controlId="formGridEmail">
+                    <Form.Group as={Col} className="mb-1" controlId="orderEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     </Form.Group>
-                    <Form.Group as={Col} className="mb-1" controlId="formGridPhone">
+                    <Form.Group as={Col} className="mb-1" controlId="orderPhone">
                             <Form.Label>Telefon</Form.Label>
                             <Form.Control type="number" value={phone} onChange={(e) => setPhone(e.target.value)} required/>
                     </Form.Group>
@@ -110,10 +106,10 @@ export default function OrderComponent(props){
                     </Form.Group>
                     <Form.Label>Timpul de închiriere</Form.Label>
                     <Row className="mb-1">
-                        <Form.Group as={Col} controlId="formGridRentalTime">
+                        <Form.Group as={Col} controlId="orderRentalTimeHours">
                             <Form.Control type="number" placeholder="Ore" min="0" max="8" value={rentalTimeHours} onChange={(e) => setRentalTimeHours(e.target.value)} required/>
                         </Form.Group>
-                        <Form.Group as={Col} controlId="formGridConfirmPassword">
+                        <Form.Group as={Col} controlId="orderRentalTimeDays">
                             <Form.Control type="number" placeholder="Zile" min="0" max="4" value={rentalTimeDays} onChange={(e) => setRentalTimeDays(e.target.value)} required/>
                         </Form.Group>
                     </Row>

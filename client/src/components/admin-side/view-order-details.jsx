@@ -1,7 +1,7 @@
 import axios from "axios";
 import React,{useEffect, useState} from "react";
 import {Modal, Button, Form, Col, Row, Alert} from 'react-bootstrap';
-import OrderStatus from "../../../util/OrderStatus";
+import OrderStatus from "../../util/OrderStatus";
 
 export default function ViewOrderDetails(props){
 
@@ -29,18 +29,12 @@ export default function ViewOrderDetails(props){
         }
         
         await axios
-                .put(`http://localhost:8080/v1/api/order/${props.order.id}`,orderUpdated)
-                .then((response) => {
-                    setSuccesMessage(true);
-                    console.log(response.data);
-            })
-            .catch((error) => {
-                setSuccesMessage(false);
-                if (error.response) {
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                }});
+                .put(`http://localhost:8080/v1/api/order/${props.order.id}`, orderUpdated)
+                .then(() => setSuccesMessage(true))
+                .catch((error) => {
+                    setSuccesMessage(false);
+                    if(error.response) console.log(error.response.data);
+                });
     }
 
     useEffect(() => {

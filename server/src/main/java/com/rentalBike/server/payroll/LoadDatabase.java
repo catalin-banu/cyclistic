@@ -31,7 +31,7 @@ public class LoadDatabase {
                     .save(new OrderItem(4L,"Georgiana","Cristea","geo_cristea@gmail.com",
                             "0729847432","Trotinetă electrică(1)","8h 0 zile","","ÎN AȘTEPTARE")));
             log.info("Preloading admin" + adminRepository
-                    .save(new AdminItem("admin","password")));
+                    .save(new AdminItem("admin","parola1234")));
         };
     }
 }

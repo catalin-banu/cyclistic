@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Container, Nav, Navbar, Button} from "react-bootstrap";
-import OrderComponent from "../order-modal-component/order-component";
-import LoginModal from "./login-admin-component";
+import PlaceAnOrderComponent from "../place-an-order-component/place-an-order-component";
+import LoginComponent from "./login-component";
 
 export default function NavbarComponent(){
     const [orderModalShow, setOrderModalShow] = useState(false);
@@ -28,8 +28,8 @@ export default function NavbarComponent(){
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-        <OrderComponent show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
-        <LoginModal show={loginModalShow} onHide={() => setLoginModalShow(false)}/>
+        <PlaceAnOrderComponent show={orderModalShow} onHide={() => setOrderModalShow(false)}/>
+        <LoginComponent show={loginModalShow} onHide={() => setLoginModalShow(false)}/>
         </>
     )
 }

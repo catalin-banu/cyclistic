@@ -1,5 +1,5 @@
-import MainComponent from "./components/main/main-component/main-component";
-import AdminComponent from "./components/admin/admin-component/admin-component";
+import MainComponent from "./components/public-side/main-component/main-component";
+import AdminComponent from "./components/admin-side/admin-component/admin-component";
 import {BrowserRouter as Router, Routes , Route} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
