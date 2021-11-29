@@ -4,6 +4,7 @@ import {Modal, Button, Form, Row, Col, Alert} from 'react-bootstrap';
 import './place-an-order-component.css'
 import OrderStatus from "../../../util/OrderStatus";
 import convertMapToString from "../../../util/convertMapToString";
+import formatRentalTime from "../../../util/formatRentalTime";
 
 export default function PlaceAnOrderComponent(props){
 
@@ -22,8 +23,12 @@ export default function PlaceAnOrderComponent(props){
     const[rentalTimeHours, setRentalTimeHours] = useState('');
     const[rentalTimeDays, setRentalTimeDays] = useState('');
     const[succesMessage, setSuccesMessage] = useState(false);
+    const[error, setError] = useState(false);
+    const[errorMessage, setErrorMessage] = useState("");
     const[orderNumber, setOrderNumber] = useState("");
+
     const productList = new Map([]);
+    const rentalTime = new Map([]);
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -36,24 +41,32 @@ export default function PlaceAnOrderComponent(props){
             productList.set("Bicicleta electrica", numberOfEBikes);
         if(isEScooterChecked === true)
             productList.set("Trotineta electrica", numberOfEScooters);
-
+        if(rentalTimeHours !== '')
+            rentalTime.set("ore", rentalTimeHours);
+        if(rentalTimeDays !== '')
+            rentalTime.set("zile", rentalTimeDays);
+        
         let orderItem = {
             firstName: firstName,
             lastName: lastName,
             email: email,
             phone: phone.toString(),
             productList: convertMapToString(productList),
-            rentalTime: rentalTimeHours + " h " + rentalTimeDays +" zile",
+            rentalTime: formatRentalTime(rentalTime),
             status: OrderStatus.PENDING
         }
+
         await axios
             .post("http://localhost:8080/v1/api/order", orderItem)
             .then((response) => {
-                    setOrderNumber(response.data.id);
-                    setSuccesMessage(true);
+                setOrderNumber(response.data.id);
+                setSuccesMessage(true);
+                setError(false);
             })
             .catch((error) => {
-                if (error.response) console.log(error.response.data);
+                setError(true);
+                setSuccesMessage(false);
+                setErrorMessage(error.response.data.errorMessage);
             });
     }
 
@@ -63,27 +76,26 @@ export default function PlaceAnOrderComponent(props){
                 <Modal.Title>Formular de închiriere</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {succesMessage && <Alert variant="success">
-                    Comanda dvs cu numărul {orderNumber} a fost înregistrată cu succes!
-                </Alert>}
+                {succesMessage && <Alert variant="success">Comanda dvs cu numărul {orderNumber} a fost înregistrată cu succes!</Alert>}
+                {error && <Alert variant="danger">{errorMessage}</Alert>}
                 <Form id="order-form" onSubmit={handleSubmit}>
                     <Row className="mb-1">
                         <Form.Group as={Col} controlId="orderLastName">
                             <Form.Label>Nume</Form.Label>
-                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
+                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="orderFirstName">
                             <Form.Label>Prenume</Form.Label>
-                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                         </Form.Group>
                     </Row>
                     <Form.Group as={Col} className="mb-1" controlId="orderEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                            <Form.Control type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </Form.Group>
                     <Form.Group as={Col} className="mb-1" controlId="orderPhone">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="number" value={phone} onChange={(e) => setPhone(e.target.value)} required/>
+                            <Form.Control type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </Form.Group>
                     <Form.Label>Produsul dorit</Form.Label>
                     <Form.Group as={Col} className="choose-product">
@@ -107,10 +119,10 @@ export default function PlaceAnOrderComponent(props){
                     <Form.Label>Timpul de închiriere</Form.Label>
                     <Row className="mb-1">
                         <Form.Group as={Col} controlId="orderRentalTimeHours">
-                            <Form.Control type="number" placeholder="Ore" min="0" max="8" value={rentalTimeHours} onChange={(e) => setRentalTimeHours(e.target.value)} required/>
+                            <Form.Control type="number" placeholder="Ore" min="0" max="8" value={rentalTimeHours} onChange={(e) => setRentalTimeHours(e.target.value)} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="orderRentalTimeDays">
-                            <Form.Control type="number" placeholder="Zile" min="0" max="4" value={rentalTimeDays} onChange={(e) => setRentalTimeDays(e.target.value)} required/>
+                            <Form.Control type="number" placeholder="Zile" min="0" max="4" value={rentalTimeDays} onChange={(e) => setRentalTimeDays(e.target.value)} />
                         </Form.Group>
                     </Row>
                 </Form>
