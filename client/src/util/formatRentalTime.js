@@ -1,8 +1,8 @@
-export default function convertMapToString(mapArray){
+export default function formatRentalTime(mapArray){
     let result = "";
     mapArray.forEach(
         (key,value) => {
-            let format = value + "(" + key + ")\n";
+            let format = key + " " + value + " ";
             result += format.toString();
         }
     );
