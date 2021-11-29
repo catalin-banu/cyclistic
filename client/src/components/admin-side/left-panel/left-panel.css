@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
 .panel-title {
@@ -18,6 +17,13 @@
   margin-bottom: 10%;
 }
 
+.admin-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .admin-icon {
   height: 40vw;
   width: 40vw;
@@ -26,6 +32,7 @@
   max-height: 120px;
   min-height: 110px;
   object-fit: cover !important;
+  align-self: center;
 }
 
 .role {
@@ -34,8 +41,6 @@
 }
 
 .logout {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   background-color: #1d2835;
   border-color: #1d2835;
@@ -50,8 +55,6 @@
 }
 
 .logout-icon {
-  height: 100%;
-  width: 100%;
   max-width: 30px;
   min-width: 20px;
   max-height: 30px;
@@ -66,10 +69,10 @@
   #left-panel {
     width: 100%;
     max-width: 100%;
-    height: 4vh;
+    height: auto;
   }
 
-  .panel-title, .admin-icon, .role {
+  .panel-title, .admin-container {
     display: none;
   }
 

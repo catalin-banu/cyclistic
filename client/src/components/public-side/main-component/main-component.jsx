@@ -16,7 +16,7 @@ function MainComponent(){
                 <PricesListComponent/>
                 <ContactComponent/>
                 <div className="rights">
-                    <span>©2021 închiriază@office.com. All Rights Reserved</span>
+                    <span>©2021 office@cyclistic.com. All Rights Reserved</span>
                 </div>
             </div>
         </div>

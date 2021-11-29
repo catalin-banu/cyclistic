@@ -1,7 +1,7 @@
 #products {
   width: 100%;
   display: flex;
-  background-image: url("../../../resources/bg-products.jpg");
+  background-color: white;
 }
 
 .products-wrapper {
@@ -21,6 +21,8 @@
 
 .products-list > div {
   margin: 1%;
+  border: 0;
+  text-align: justify;
 }
 
 .title {
