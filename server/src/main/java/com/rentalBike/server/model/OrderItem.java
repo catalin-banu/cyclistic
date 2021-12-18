@@ -40,4 +40,5 @@ public class OrderItem {
     private String rentalTime;
     private String details;
     private String status;
+    private Number price;
 }
