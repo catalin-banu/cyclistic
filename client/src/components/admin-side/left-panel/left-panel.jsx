@@ -14,12 +14,14 @@ function LeftPanelComponent(){
     return(
         <div id="left-panel">
             <span className="panel-title">CYCLISTIC</span>
-            <img src={AdminIcon} alt="Admin Icon" className="admin-icon"/>
+            <div className="admin-container">
+                <img src={AdminIcon} alt="Admin Icon" className="admin-icon"/>
+                <span className="role">Administrator</span>
+            </div>
             <button  className="logout" onClick={handleLogout}>
                 <img src={LogoutIcon} alt="Logout Icon" className="logout-icon"/>
                 <span className="logout-text">Deconectare</span>
             </button>
-            <span className="role">Administrator</span>
         </div>
     )
 

@@ -13,6 +13,7 @@ export default function ViewOrderDetails(props){
     const[rentalTime, setRentalTime] = useState('');
     const[details, setDetails] = useState('');
     const[status, setStatus] = useState('');
+    const[price, setPrice] = useState('');
     const[succesMessage, setSuccesMessage] = useState(false);
 
     async function onUpdateCallback(event){
@@ -25,7 +26,8 @@ export default function ViewOrderDetails(props){
             productList: productList,
             rentalTime: rentalTime,
             details: details,
-            status: status
+            status: status,
+            price: price
         }
         
         await axios
@@ -46,6 +48,7 @@ export default function ViewOrderDetails(props){
         setRentalTime(props.order.rentalTime);
         setDetails(props.order.details);
         setStatus(props.order.status);
+        setPrice(props.order.price);
         setSuccesMessage(false);
     },[props.order]);
 
@@ -85,13 +88,17 @@ export default function ViewOrderDetails(props){
                         <Form.Control type="text" value={rentalTime} onChange={(e) => setRentalTime(e.target.value)}/>
                     </Form.Group>
                     <Form.Group as={Col} className="mb-1" controlId="updateStatus">
-                        <Form.Label>Interval închiriere</Form.Label>
+                        <Form.Label>Status comandă</Form.Label>
                         <Form.Select aria-label="Default select example" value={status} onChange={(e) => setStatus(e.target.value)}>
                             <option value={OrderStatus.PENDING}>{OrderStatus.PENDING}</option>
                             <option value={OrderStatus.CONFIRMED}>{OrderStatus.CONFIRMED}</option>
                             <option value={OrderStatus.PAID_AND_TAKEN}>{OrderStatus.PAID_AND_TAKEN}</option>
                             <option value={OrderStatus.FINISHED}>{OrderStatus.FINISHED}</option>
                         </Form.Select>
+                    </Form.Group>
+                    <Form.Group as={Col}  className="mb-1" controlId="updatePrice">
+                        <Form.Label>Total de plată</Form.Label>
+                        <Form.Control type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
                     </Form.Group>
                 </Row>
                 <Form.Group className="mb-1" controlId="updateComments">

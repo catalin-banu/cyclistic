@@ -14,12 +14,11 @@ function OrdersTable(){
             <td>{order.id}</td>
             <td>{order.lastName}</td>
             <td>{order.firstName}</td>
-            <td>{order.email}</td>
             <td>{order.phone}</td>
             <td><p>{order.productList}</p></td>
             <td>{order.rentalTime}</td>
-            <td>{order.details}</td>
             <td>{order.status}</td> 
+            <td>{order.price} Ron</td> 
         </tr>
     )
 
@@ -46,13 +45,12 @@ function OrdersTable(){
                     <th>Nr. Comenzii</th>
                     <th>Nume</th>
                     <th>Prenume</th>
-                    <th>Email</th>
                     <th>Telefon</th>
                     <th>Produs</th>
                     <th>Interval închiriere</th>
-                    <th>Detalii</th>
                     <th>Status</th>
-                </tr>
+                    <th>Pret</th>
+                    </tr>
             </thead>
             <tbody>
                {ordersList}

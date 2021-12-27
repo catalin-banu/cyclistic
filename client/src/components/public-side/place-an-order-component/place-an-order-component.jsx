@@ -29,22 +29,48 @@ export default function PlaceAnOrderComponent(props){
 
     const productList = new Map([]);
     const rentalTime = new Map([]);
+    let price1;
+    let price2;
+    let price3;
+    let price4;
 
     async function handleSubmit(e){
         e.preventDefault();
 
         if(isCityBikeChecked === true)
+        {
             productList.set("Bicicleta de oras", numberOfCityBikes);
+            price1 = numberOfCityBikes * ( parseInt(rentalTimeHours) * 10 + parseInt(rentalTimeDays) * 80);
+        } 
+        else price1 = 0;
+
         if(isMtbChecked === true)
+        {
             productList.set("Bicicleta de munte", numberOfMtbs);
+            price2 = numberOfMtbs * ( parseInt(rentalTimeHours) * 20 + parseInt(rentalTimeDays) * 150);
+        }
+        else price2 = 0;
+
         if(isEBikeChecked === true)
+        {
             productList.set("Bicicleta electrica", numberOfEBikes);
+            price3 = numberOfEBikes * ( parseInt(rentalTimeHours) * 100 + parseInt(rentalTimeDays) * 280);
+        }   
+        else price3 = 0;
+
         if(isEScooterChecked === true)
+        {
             productList.set("Trotineta electrica", numberOfEScooters);
+            price4 = numberOfEScooters * ( parseInt(rentalTimeHours) * 10 + parseInt(rentalTimeDays) * 80);
+        }
+        else price4 = 0;
+
         if(rentalTimeHours !== '')
             rentalTime.set("ore", rentalTimeHours);
         if(rentalTimeDays !== '')
             rentalTime.set("zile", rentalTimeDays);
+        
+        let totalPrice = price1 + price2 + price3 + price4;
         
         let orderItem = {
             firstName: firstName,
@@ -53,6 +79,7 @@ export default function PlaceAnOrderComponent(props){
             phone: phone.toString(),
             productList: convertMapToString(productList),
             rentalTime: formatRentalTime(rentalTime),
+            price: totalPrice,
             status: OrderStatus.PENDING
         }
 
