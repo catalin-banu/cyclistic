@@ -18,7 +18,7 @@ function OrdersTable(){
             <td><p>{order.productList}</p></td>
             <td>{order.rentalTime}</td>
             <td>{order.status}</td> 
-            <td>{order.details}</td>
+            <td>{order.price} Ron</td> 
         </tr>
     )
 
@@ -49,7 +49,7 @@ function OrdersTable(){
                     <th>Produs</th>
                     <th>Interval închiriere</th>
                     <th>Status</th>
-                    <th>Detalii</th>
+                    <th>Pret</th>
                     </tr>
             </thead>
             <tbody>
