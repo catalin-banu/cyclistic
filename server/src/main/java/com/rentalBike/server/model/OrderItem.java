@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -38,7 +39,9 @@ public class OrderItem {
 
     @NotEmpty(message = "Nu ați introdus timpul de închiriere")
     private String rentalTime;
+    private String date;
     private String details;
     private String status;
     private Number price;
+
 }

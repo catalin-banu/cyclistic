@@ -39,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
         existingOrder.setPhone(orderUpdate.getPhone());
         existingOrder.setProductList(orderUpdate.getProductList());
         existingOrder.setRentalTime(orderUpdate.getRentalTime());
+        existingOrder.setDate(orderUpdate.getDate());
         existingOrder.setDetails(orderUpdate.getDetails());
         existingOrder.setStatus(orderUpdate.getStatus());
         existingOrder.setPrice(orderUpdate.getPrice());
